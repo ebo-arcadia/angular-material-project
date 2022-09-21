@@ -1,17 +1,29 @@
 <h4>New reservation</h4>
 
-<mat-form-field class="width-50" floatLabel="auto" appearance="outline" color="accent">
+<mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
     <input type="text" matInput placeholder="Search a place" required="required"/>
     <mat-label>Place</mat-label>
     <mat-hint align="end">Up to 20 characters</mat-hint>
-    <mat-icon matSuffix>search</mat-icon>
+    <mat-icon matPrefix>search</mat-icon>
 </mat-form-field>
 
-<!-- <div class="mb">
-    <button mat-flat-button color="primary" class="mr">Save</button>
-    <button mat-flat-button color="accent" class="mr">Cancel</button>
-    <button mat-flat-button color="warn" class="mr">Delete</button>
-</div> -->
+<mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
+    <input type="text" matInput placeholder="Search a place" required="required"/>
+    <mat-label>Guest Name</mat-label>
+    <mat-hint align="end">Up to 20 characters</mat-hint>
+    <mat-icon matPrefix>person</mat-icon>
+</mat-form-field>
+
+<mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
+    <mat-select required="required">
+        <mat-option value="Australia">Australia</mat-option>
+        <mat-option value="Bermuda">Bermuda</mat-option>
+        <mat-option value="Canada">Canada</mat-option>
+    </mat-select>
+    <mat-label>Country</mat-label>
+    <mat-hint align="end">Where to?</mat-hint>
+    <mat-icon matPrefix>place</mat-icon>
+</mat-form-field>
 
 <div class="mb">
     <button mat-fab color="primary" class="mr">

@@ -1,0 +1,20 @@
+{
+    "countries": [
+        {
+            "id":1,
+            "countryName":"Australia"
+        },
+        {
+            "id":2,
+            "countryName":"Bermuda"
+        },
+        {
+            "id":3,
+            "countryName":"Canada"
+        },
+        {
+            "id":4,
+            "countryName":"Denmark"
+        }
+    ]
+}

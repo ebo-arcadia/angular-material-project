@@ -16,9 +16,7 @@
 
 <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
     <mat-select required="required">
-        <mat-option value="Australia">Australia</mat-option>
-        <mat-option value="Bermuda">Bermuda</mat-option>
-        <mat-option value="Canada">Canada</mat-option>
+        <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.countryName }}</mat-option>
     </mat-select>
     <mat-label>Country</mat-label>
     <mat-hint align="end">Where to?</mat-hint>

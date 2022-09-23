@@ -16,7 +16,20 @@
 
 <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
     <mat-select required="required">
-        <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.countryName }}</mat-option>
+        <div *ngFor="let country of countries" >
+            <mat-optgroup *ngIf="country.countryName.startsWith('A')" label="A">
+                <mat-option >{{ country.countryName }}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup *ngIf="country.countryName.startsWith('B')" label="B">
+                <mat-option >{{ country.countryName }}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup *ngIf="country.countryName.startsWith('C')" label="C">
+                <mat-option >{{ country.countryName }}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup *ngIf="country.countryName.startsWith('D')" label="D">
+                <mat-option >{{ country.countryName }}</mat-option>
+            </mat-optgroup>
+        </div>
     </mat-select>
     <mat-label>Country</mat-label>
     <mat-hint align="end">Where to?</mat-hint>

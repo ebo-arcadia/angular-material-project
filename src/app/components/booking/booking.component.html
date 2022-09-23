@@ -1,64 +1,68 @@
 <h4>New reservation</h4>
+<form [formGroup]="formGroup">
+    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
+        <input type="text" matInput placeholder="Search a place" required="required" formControlName="place"/>
+        <mat-label>Place</mat-label>
+        <mat-hint align="end">Up to 20 characters</mat-hint>
+        <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
 
-<mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
-    <input type="text" matInput placeholder="Search a place" required="required"/>
-    <mat-label>Place</mat-label>
-    <mat-hint align="end">Up to 20 characters</mat-hint>
-    <mat-icon matPrefix>search</mat-icon>
-</mat-form-field>
+    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
+        <input type="text" matInput placeholder="Search a place" required="required" formControlName="guestName"/>
+        <mat-label>Guest Name</mat-label>
+        <mat-hint align="end">Up to 20 characters</mat-hint>
+        <mat-icon matPrefix>person</mat-icon>
+    </mat-form-field>
 
-<mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
-    <input type="text" matInput placeholder="Search a place" required="required"/>
-    <mat-label>Guest Name</mat-label>
-    <mat-hint align="end">Up to 20 characters</mat-hint>
-    <mat-icon matPrefix>person</mat-icon>
-</mat-form-field>
+    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
+        <mat-select required="required" formControlName="country">
+            <div *ngFor="let country of countries" >
+                <mat-optgroup *ngIf="country.countryName.startsWith('A')" label="A">
+                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
+                </mat-optgroup>
+                <mat-optgroup *ngIf="country.countryName.startsWith('B')" label="B">
+                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
+                </mat-optgroup>
+                <mat-optgroup *ngIf="country.countryName.startsWith('C')" label="C">
+                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
+                </mat-optgroup>
+                <mat-optgroup *ngIf="country.countryName.startsWith('D')" label="D">
+                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
+                </mat-optgroup>
+            </div>
+        </mat-select>
+        <mat-label>Country</mat-label>
+        <mat-hint align="end">Where to?</mat-hint>
+        <mat-icon matPrefix>place</mat-icon>
+    </mat-form-field>
 
-<mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
-    <mat-select required="required">
-        <div *ngFor="let country of countries" >
-            <mat-optgroup *ngIf="country.countryName.startsWith('A')" label="A">
-                <mat-option >{{ country.countryName }}</mat-option>
-            </mat-optgroup>
-            <mat-optgroup *ngIf="country.countryName.startsWith('B')" label="B">
-                <mat-option >{{ country.countryName }}</mat-option>
-            </mat-optgroup>
-            <mat-optgroup *ngIf="country.countryName.startsWith('C')" label="C">
-                <mat-option >{{ country.countryName }}</mat-option>
-            </mat-optgroup>
-            <mat-optgroup *ngIf="country.countryName.startsWith('D')" label="D">
-                <mat-option >{{ country.countryName }}</mat-option>
-            </mat-optgroup>
-        </div>
-    </mat-select>
-    <mat-label>Country</mat-label>
-    <mat-hint align="end">Where to?</mat-hint>
-    <mat-icon matPrefix>place</mat-icon>
-</mat-form-field>
+    <div class="mb">
+        <button mat-fab color="primary" class="mr">
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    save
+                </span>
+            </mat-icon>
+        </button>
+        <button mat-fab color="accent" class="mr">
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    cancel
+                </span>
+            </mat-icon>
+        </button>
+        <button mat-fab color="accent" class="mr">
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    delete_forever
+                </span>
+            </mat-icon>
+        </button>
+    </div>
 
-<div class="mb">
-    <button mat-fab color="primary" class="mr">
-        <mat-icon>
-            <span class="material-symbols-outlined">
-                save
-            </span>
-        </mat-icon>
-    </button>
-    <button mat-fab color="accent" class="mr">
-        <mat-icon>
-            <span class="material-symbols-outlined">
-                cancel
-            </span>
-        </mat-icon>
-    </button>
-    <button mat-fab color="accent" class="mr">
-        <mat-icon>
-            <span class="material-symbols-outlined">
-                delete_forever
-            </span>
-        </mat-icon>
-    </button>
-</div>
-
+    <div>
+        {{ formGroup.value | json }}
+    </div>
+</form>
 
 

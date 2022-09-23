@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from 'src/app/services/countries.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -9,8 +10,15 @@ import { CountriesService } from 'src/app/services/countries.service';
 export class BookingComponent implements OnInit {
   countries: any;
   error: any;
+  formGroup: FormGroup
 
-  constructor(private _countriesService: CountriesService) { }
+  constructor(private _countriesService: CountriesService) {
+    this.formGroup = new FormGroup({
+      place: new FormControl(null),
+      guestName: new FormControl(null),
+      country: new FormControl(null)
+    });
+  }
 
   ngOnInit(): void {
     this._countriesService.getCountries().subscribe({

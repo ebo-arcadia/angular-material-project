@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from 'src/app/services/countries.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -14,9 +14,9 @@ export class BookingComponent implements OnInit {
 
   constructor(private _countriesService: CountriesService) {
     this.formGroup = new FormGroup({
-      place: new FormControl(null),
-      guestName: new FormControl(null),
-      country: new FormControl(null)
+      place: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      guestName: new FormControl('', [Validators.maxLength(20), Validators.pattern('[A-Za-z.]*$')]),
+      country: new FormControl('', [Validators.required])
     });
   }
 
@@ -32,4 +32,26 @@ export class BookingComponent implements OnInit {
     // )
   }
 
+  // implement rendering error messages
+  getFormContorl(controlName: string):FormControl { return this.formGroup.get(controlName) as FormControl};
+
+  getErrorMessage(controlName: string, errorType: string):string {
+    switch(controlName) {
+      case "place":
+        {if (errorType === "required") return "<strong>Place</strong> name must be provided";
+        else if (errorType === "maxLength") return "<strong>Place</strong> name can not have more than 20 characters";
+        else return "";
+        }
+      case "guestName":
+        {if (errorType === "maxLength") return "<strong>guest name</strong> can not have more than 20 characters";
+        else if (errorType === "pattern") return "<strong>guest name</strong> can contain alpha letters only";
+        else return "";
+        }
+      case "countries":
+        {if (errorType === "required") return "<strong>county</strong> name must be provided";
+        else return "";
+        }
+      default: return "";
+    }
+  }
 }

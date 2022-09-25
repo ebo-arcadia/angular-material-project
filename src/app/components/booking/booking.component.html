@@ -5,6 +5,7 @@
         <mat-label>Place</mat-label>
         <mat-hint align="end">Up to 20 characters</mat-hint>
         <mat-icon matPrefix>search</mat-icon>
+        <mat-error [innerHTML]="getErrorMessage('place', 'required')"></mat-error>
     </mat-form-field>
 
     <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">

@@ -5,7 +5,8 @@
         <mat-label>Place</mat-label>
         <mat-hint align="end">Up to 20 characters</mat-hint>
         <mat-icon matPrefix>search</mat-icon>
-        <mat-error [innerHTML]="getErrorMessage('place', 'required')"></mat-error>
+        <mat-error *ngIf="getFormControl('place').hasError('required')" [innerHTML]="getErrorMessage('place', 'required')"></mat-error>
+        <mat-error *ngIf="getFormControl('place').hasError('maxlength')" [innerHTML]="getErrorMessage('place', 'maxlength')"></mat-error>
     </mat-form-field>
 
     <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
@@ -13,6 +14,9 @@
         <mat-label>Guest Name</mat-label>
         <mat-hint align="end">Up to 20 characters</mat-hint>
         <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="getFormControl('guestName').hasError('pattern')" [innerHTML]="getErrorMessage('guestName', 'pattern')"></mat-error>
+        <mat-error *ngIf="getFormControl('guestName').hasError('maxlength')" [innerHTML]="getErrorMessage('guestName', 'maxlength')"></mat-error>
+        <mat-error *ngIf="getFormControl('guestName').hasError('required')" [innerHTML]="getErrorMessage('guestName', 'required')"></mat-error>
     </mat-form-field>
 
     <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
@@ -35,24 +39,25 @@
         <mat-label>Country</mat-label>
         <mat-hint align="end">Where to?</mat-hint>
         <mat-icon matPrefix>place</mat-icon>
+        <mat-error *ngIf="getFormControl('country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
     </mat-form-field>
 
-    <div class="mb">
-        <button mat-fab color="primary" class="mr">
+    <div class="mt mb mr ml">
+        <button mat-fab color="primary" class="mr" type="submit">
             <mat-icon>
                 <span class="material-symbols-outlined">
                     save
                 </span>
             </mat-icon>
         </button>
-        <button mat-fab color="accent" class="mr">
+        <button mat-fab color="accent" class="mr" type="button">
             <mat-icon>
                 <span class="material-symbols-outlined">
                     cancel
                 </span>
             </mat-icon>
         </button>
-        <button mat-fab color="accent" class="mr">
+        <button mat-fab color="accent" class="mr" type="button">
             <mat-icon>
                 <span class="material-symbols-outlined">
                     delete_forever

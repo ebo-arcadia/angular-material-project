@@ -1,7 +1,7 @@
 <h4>New reservation</h4>
 <form [formGroup]="formGroup">
     <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
-        <input type="text" matInput placeholder="Search a place" required="required" formControlName="place"/>
+        <input type="text" matInput placeholder="Search a place" required="required" formControlName="place" [errorStateMatcher]="customErrorStateMatcher"/>
         <mat-label>Place</mat-label>
         <mat-hint align="end">Up to 20 characters</mat-hint>
         <mat-icon matPrefix>search</mat-icon>
@@ -10,7 +10,7 @@
     </mat-form-field>
 
     <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
-        <input type="text" matInput placeholder="Search a place" required="required" formControlName="guestName"/>
+        <input type="text" matInput placeholder="Search a place" required="required" formControlName="guestName" [errorStateMatcher]="customErrorStateMatcher"/>
         <mat-label>Guest Name</mat-label>
         <mat-hint align="end">Up to 20 characters</mat-hint>
         <mat-icon matPrefix>person</mat-icon>
@@ -20,7 +20,7 @@
     </mat-form-field>
 
     <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
-        <mat-select required="required" formControlName="country">
+        <mat-select required="required" formControlName="country" [errorStateMatcher]="customErrorStateMatcher">
             <div *ngFor="let country of countries" >
                 <mat-optgroup *ngIf="country.countryName.startsWith('A')" label="A">
                     <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>

@@ -13,14 +13,8 @@ export class BookingComponent implements OnInit {
   error: any;
   formGroup: FormGroup
   customErrorStateMatcher: CustomErrorStateMatcher = new CustomErrorStateMatcher()
-  cities: any[] = [
-    {'id': 1, cityName: "Athens"},
-    {'id': 2, cityName: "Barcelona"},
-    {'id': 3, cityName: "Cardiff"},
-    {'id': 4, cityName: "Denvor"},
-    {'id': 5, cityName: "Eden"},
-  ]
-
+  cities: any[] = [];
+  
   constructor(private _countriesService: CountriesService) {
     this.formGroup = new FormGroup({
       place: new FormControl('', [Validators.required, Validators.maxLength(20)]),

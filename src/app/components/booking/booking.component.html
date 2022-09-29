@@ -37,10 +37,22 @@
             </div>
         </mat-select>
         <mat-label>Country</mat-label>
-        <mat-hint align="end">Where to?</mat-hint>
+        <mat-hint align="end">Which country?</mat-hint>
         <mat-icon matPrefix>place</mat-icon>
         <mat-error *ngIf="getFormControl('country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
     </mat-form-field>
+
+    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
+        <input type="text" matInput required="required" formControlName="city" [errorStateMatcher]="customErrorStateMatcher" [matAutocomplete]="autoComplete">
+        <mat-label>City</mat-label>
+        <mat-autocomplete #autoComplete="matAutocomplete">
+            <mat-option *ngFor="let city of cities" [value]="city.cityName"> {{city.cityName}} </mat-option>
+        </mat-autocomplete>
+        <mat-hint align="end">Which city?</mat-hint>
+        <mat-icon matPrefix>map</mat-icon>
+        <mat-error *ngIf="getFormControl('city').hasError('required')" [innerHTML]="getErrorMessage('city', 'required')"></mat-error>
+    </mat-form-field>
+
 
     <div class="mt mb mr ml">
         <button mat-fab color="primary" class="mr" type="submit">

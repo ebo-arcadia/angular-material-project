@@ -13,12 +13,20 @@ export class BookingComponent implements OnInit {
   error: any;
   formGroup: FormGroup
   customErrorStateMatcher: CustomErrorStateMatcher = new CustomErrorStateMatcher()
+  cities: any[] = [
+    {'id': 1, cityName: "Athens"},
+    {'id': 2, cityName: "Barcelona"},
+    {'id': 3, cityName: "Cardiff"},
+    {'id': 4, cityName: "Denvor"},
+    {'id': 5, cityName: "Eden"},
+  ]
 
   constructor(private _countriesService: CountriesService) {
     this.formGroup = new FormGroup({
       place: new FormControl('', [Validators.required, Validators.maxLength(20)]),
       guestName: new FormControl('', [Validators.maxLength(20), Validators.pattern('[A-Za-z.]*$'), Validators.required]),
-      country: new FormControl('', [Validators.required])
+      country: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required])
     });
   }
 
@@ -47,6 +55,10 @@ export class BookingComponent implements OnInit {
         }
       case "country":
         {if (validatorType === "required") return "<strong>county</strong> name must be provided";
+        else return "";
+        }
+      case "city":
+        {if (validatorType === "required") return "<strong>city</strong> name must be provided";
         else return "";
         }
       default: return "";

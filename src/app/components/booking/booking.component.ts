@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CountriesService } from 'src/app/services/countries.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomErrorStateMatcher } from 'src/app/helper/custom-error-state-matcher';
+import { CitiesService } from 'src/app/services/cities.service';
+import { City } from 'src/app/model/City';
 
 @Component({
   selector: 'app-booking',
@@ -13,9 +15,12 @@ export class BookingComponent implements OnInit {
   error: any;
   formGroup: FormGroup
   customErrorStateMatcher: CustomErrorStateMatcher = new CustomErrorStateMatcher()
-  cities: any[] = [];
+  cities: City[] = [];
   
-  constructor(private _countriesService: CountriesService) {
+  constructor(
+    private _countriesService: CountriesService,
+    private _citiesService: CitiesService
+    ) {
     this.formGroup = new FormGroup({
       place: new FormControl('', [Validators.required, Validators.maxLength(20)]),
       guestName: new FormControl('', [Validators.maxLength(20), Validators.pattern('[A-Za-z.]*$'), Validators.required]),
@@ -28,6 +33,10 @@ export class BookingComponent implements OnInit {
     this._countriesService.getCountries().subscribe({
       next: ((value: any) => {this.countries = value}),
       error: ((error: any) => console.warn(error)),
+    });
+    this._citiesService.getCities().subscribe({
+      next: ((value: City[]) => this.cities = value),
+      error: ((error: string) => console.warn(error))
     })
   }
 

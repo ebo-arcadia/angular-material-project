@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomErrorStateMatcher } from 'src/app/helper/custom-error-state-matcher';
 import { CitiesService } from 'src/app/services/cities.service';
 import { City } from 'src/app/model/City';
+import { debounceTime, tap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking',
@@ -13,9 +14,10 @@ import { City } from 'src/app/model/City';
 export class BookingComponent implements OnInit {
   countries: any;
   error: any;
-  formGroup: FormGroup
-  customErrorStateMatcher: CustomErrorStateMatcher = new CustomErrorStateMatcher()
+  formGroup: FormGroup;
+  customErrorStateMatcher: CustomErrorStateMatcher = new CustomErrorStateMatcher();
   cities: City[] = [];
+  isCitiesLoading: boolean = false;
   
   constructor(
     private _countriesService: CountriesService,
@@ -34,13 +36,17 @@ export class BookingComponent implements OnInit {
       next: ((value: any) => {this.countries = value}),
       error: ((error: any) => console.warn(error)),
     });
-    this._citiesService.getCities().subscribe({
+    this.getFormControl('city').valueChanges.pipe(
+      debounceTime(500),
+      tap(() => {this.cities = []; this.isCitiesLoading = true}),
+      switchMap((value) => {return this._citiesService.getCities(value)})
+    ).subscribe({
       next: ((value: City[]) => this.cities = value),
-      error: ((error: string) => console.warn(error))
-    })
+      error: ((error: string) => console.warn(error)),
+      complete: () => this.isCitiesLoading = false
+    });
   }
 
-  // implement rendering error messages
   getFormControl(controlName: string):FormControl { return this.formGroup.get(controlName) as FormControl};
 
   getErrorMessage(controlName: string, validatorType: string):string {
@@ -67,4 +73,5 @@ export class BookingComponent implements OnInit {
       default: return "";
     }
   }
+
 }

@@ -46,6 +46,7 @@
         <input type="text" matInput required="required" formControlName="city" [errorStateMatcher]="customErrorStateMatcher" [matAutocomplete]="autoComplete">
         <mat-label>City</mat-label>
         <mat-autocomplete #autoComplete="matAutocomplete">
+            <mat-option *ngIf="isCitiesLoading">Loading...</mat-option>
             <mat-option *ngFor="let city of cities" [value]="city.cityName"> {{city.cityName}} </mat-option>
         </mat-autocomplete>
         <mat-hint align="end">Which city?</mat-hint>

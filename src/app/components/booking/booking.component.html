@@ -54,6 +54,10 @@
         <mat-error *ngIf="getFormControl('city').hasError('required')" [innerHTML]="getErrorMessage('city', 'required')"></mat-error>
     </mat-form-field>
 
+    <div class="ml mt mb">
+        <mat-checkbox color="primary" formControlName="receivePromotionNewsletters">Receive promotion newsletters?</mat-checkbox>
+    </div>
+
 
     <div class="mt mb mr ml">
         <button mat-fab color="primary" class="mr" type="submit">

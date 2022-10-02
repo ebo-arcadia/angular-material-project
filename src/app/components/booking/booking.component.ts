@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from 'src/app/services/countries.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray} from '@angular/forms';
 import { CustomErrorStateMatcher } from 'src/app/helper/custom-error-state-matcher';
 import { CitiesService } from 'src/app/services/cities.service';
 import { City } from 'src/app/model/City';
@@ -18,6 +18,14 @@ export class BookingComponent implements OnInit {
   customErrorStateMatcher: CustomErrorStateMatcher = new CustomErrorStateMatcher();
   cities: City[] = [];
   isCitiesLoading: boolean = false;
+  hobbies: any[] = [
+    {id: 1, hobbyName: "Music"},
+    {id: 2, hobbyName: "Literature"},
+    {id: 3, hobbyName: "Outdoor"},
+    {id: 4, hobbyName: "travel"},
+    {id: 5, hobbyName: "Sport"},
+    {id: 6, hobbyName: "Movie"},
+  ]
   
   constructor(
     private _countriesService: CountriesService,
@@ -28,8 +36,17 @@ export class BookingComponent implements OnInit {
       guestName: new FormControl('', [Validators.maxLength(20), Validators.pattern('[A-Za-z.]*$'), Validators.required]),
       country: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
-      receivePromotionNewsletters: new FormControl(null)
+      receivePromotionNewsletters: new FormControl(null),
+      hobbies: new FormArray([]),
     });
+
+    this.hobbies.forEach(()=> {
+      (this.formGroup.get("hobbies") as FormArray).push(new FormControl(false));
+    });
+  }
+
+  get hobbiesFormArray(): FormArray {
+    return this.formGroup.get("hobbies") as FormArray;
   }
 
   ngOnInit(): void {

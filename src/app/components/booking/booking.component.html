@@ -58,6 +58,15 @@
         <mat-checkbox color="primary" formControlName="receivePromotionNewsletters">Receive promotion newsletters?</mat-checkbox>
     </div>
 
+    <div class="ml mt mb">
+        <mat-label>Hobbies:</mat-label>    
+        <div formArrayName="hobbies">
+          <div *ngFor="let hobby of hobbiesFormArray.controls; let i = index">
+            <mat-checkbox formControlName="hobby" color="primary">{{hobbies[i].hobbyName}}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
 
     <div class="mt mb mr ml">
         <button mat-fab color="primary" class="mr" type="submit">

@@ -25,7 +25,7 @@ export class BookingComponent implements OnInit {
     {id: 4, hobbyName: "travel"},
     {id: 5, hobbyName: "Sport"},
     {id: 6, hobbyName: "Movie"},
-  ]
+  ];
   
   constructor(
     private _countriesService: CountriesService,
@@ -36,8 +36,9 @@ export class BookingComponent implements OnInit {
       guestName: new FormControl('', [Validators.maxLength(20), Validators.pattern('[A-Za-z.]*$'), Validators.required]),
       country: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
-      receivePromotionNewsletters: new FormControl(null),
+      receivePromotionNewsletters: new FormControl(false),
       hobbies: new FormArray([]),
+      allHobbies: new FormControl(false)
     });
 
     this.hobbies.forEach(()=> {
@@ -46,7 +47,15 @@ export class BookingComponent implements OnInit {
   }
 
   get hobbiesFormArray(): FormArray {
+    console.log(this.formGroup.get("hobbies"))
     return this.formGroup.get("hobbies") as FormArray;
+  }
+
+  onChangeAllHobbiesChecked() {
+    this.hobbiesFormArray.controls.forEach((hobby, index) => {
+      console.info(hobby)
+      this.hobbiesFormArray.at(index).patchValue(this.formGroup.value.allHobbies)
+    });
   }
 
   ngOnInit(): void {
@@ -64,6 +73,7 @@ export class BookingComponent implements OnInit {
       complete: () => this.isCitiesLoading = false
     });
   }
+
 
   getFormControl(controlName: string):FormControl { return this.formGroup.get(controlName) as FormControl};
 

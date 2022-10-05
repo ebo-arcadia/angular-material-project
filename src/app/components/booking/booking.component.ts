@@ -47,7 +47,6 @@ export class BookingComponent implements OnInit {
   }
 
   get hobbiesFormArray(): FormArray {
-    console.log(this.formGroup.get("hobbies"))
     return this.formGroup.get("hobbies") as FormArray;
   }
 
@@ -56,6 +55,20 @@ export class BookingComponent implements OnInit {
       console.info(hobby)
       this.hobbiesFormArray.at(index).patchValue(this.formGroup.value.allHobbies)
     });
+  }
+
+  allHobbiesSelected() {
+    return this.hobbiesFormArray.value.every((value: any) => value === true)
+  }
+
+  noHobbySelected() {
+    return this.hobbiesFormArray.value.every((value: any) => value === false)
+  }
+
+  onHobbyChange(hobby_index: number) {
+    console.info(hobby_index)
+    if (this.allHobbiesSelected()) this.formGroup.patchValue({ allHobbies: true});
+    else this.formGroup.patchValue({ allHobbies: false});
   }
 
   ngOnInit(): void {

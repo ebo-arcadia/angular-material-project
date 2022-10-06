@@ -36,7 +36,7 @@ export class BookingComponent implements OnInit {
       guestName: new FormControl('', [Validators.maxLength(20), Validators.pattern('[A-Za-z.]*$'), Validators.required]),
       country: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
-      receivePromotionNewsletters: new FormControl(false),
+      receivePromotionNewsletters: new FormControl(false, [Validators.required]),
       hobbies: new FormArray([]),
       allHobbies: new FormControl(false)
     });
@@ -111,6 +111,11 @@ export class BookingComponent implements OnInit {
         {if (validatorType === "required") return "<strong>city</strong> name must be provided";
         else return "";
         }
+      case "receivePromotionNewsletters":
+        {if (validatorType === "required") return "Please select yes or no";
+        else return "";
+        }
+        
       default: return "";
     }
   }

@@ -55,7 +55,12 @@
     </mat-form-field>
 
     <div class="ml mt mb">
-        <mat-checkbox color="primary" formControlName="receivePromotionNewsletters">Receive promotion newsletters?</mat-checkbox>
+        <mat-radio-group formControlName="receivePromotionNewsletters">
+            <mat-label class="mr">Receive promotion newsletters?</mat-label>
+            <mat-radio-button value="yes" class="mr">Yes, Please!</mat-radio-button>
+            <mat-radio-button value="no" class="mr">No, I'm good!</mat-radio-button>
+            <mat-error *ngIf="getFormControl('receivePromotionNewsletters').hasError('required') && getFormControl('receivePromotionNewsletters').touched" [innerHTML]="getErrorMessage('receivePromotionNewsletters', 'required')"></mat-error>
+        </mat-radio-group>
     </div>
 
     <div class="ml mt mb">

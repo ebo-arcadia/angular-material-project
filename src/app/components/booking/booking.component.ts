@@ -49,6 +49,8 @@ export class BookingComponent implements OnInit {
       ]),
       hobbies: new FormArray([]),
       allHobbies: new FormControl(false),
+      checkInDate: new FormControl(null),
+      checkOutDate: new FormControl(null),
     });
 
     this.hobbies.forEach(() => {

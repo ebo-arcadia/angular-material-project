@@ -1,108 +1,209 @@
 <h4>New reservation</h4>
 <form [formGroup]="formGroup">
-    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
-        <input type="text" matInput placeholder="Search a place" required="required" formControlName="place" [errorStateMatcher]="customErrorStateMatcher"/>
+  <div class="flex">
+    <div class="box-1">
+      <mat-form-field
+        class="width-100"
+        floatLabel="auto"
+        appearance="outline"
+        color="accent"
+      >
+        <input
+          type="text"
+          matInput
+          placeholder="Search a place"
+          required="required"
+          formControlName="place"
+          [errorStateMatcher]="customErrorStateMatcher"
+        />
         <mat-label>Place</mat-label>
         <mat-hint align="end">Up to 20 characters</mat-hint>
         <mat-icon matPrefix>search</mat-icon>
-        <mat-error *ngIf="getFormControl('place').hasError('required')" [innerHTML]="getErrorMessage('place', 'required')"></mat-error>
-        <mat-error *ngIf="getFormControl('place').hasError('maxlength')" [innerHTML]="getErrorMessage('place', 'maxlength')"></mat-error>
-    </mat-form-field>
+        <mat-error
+          *ngIf="getFormControl('place').hasError('required')"
+          [innerHTML]="getErrorMessage('place', 'required')"
+        ></mat-error>
+        <mat-error
+          *ngIf="getFormControl('place').hasError('maxlength')"
+          [innerHTML]="getErrorMessage('place', 'maxlength')"
+        ></mat-error>
+      </mat-form-field>
 
-    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="accent">
-        <input type="text" matInput placeholder="Search a place" required="required" formControlName="guestName" [errorStateMatcher]="customErrorStateMatcher"/>
+      <mat-form-field
+        class="width-100"
+        floatLabel="auto"
+        appearance="outline"
+        color="accent"
+      >
+        <input
+          type="text"
+          matInput
+          placeholder="Search a place"
+          required="required"
+          formControlName="guestName"
+          [errorStateMatcher]="customErrorStateMatcher"
+        />
         <mat-label>Guest Name</mat-label>
         <mat-hint align="end">Up to 20 characters</mat-hint>
         <mat-icon matPrefix>person</mat-icon>
-        <mat-error *ngIf="getFormControl('guestName').hasError('pattern')" [innerHTML]="getErrorMessage('guestName', 'pattern')"></mat-error>
-        <mat-error *ngIf="getFormControl('guestName').hasError('maxlength')" [innerHTML]="getErrorMessage('guestName', 'maxlength')"></mat-error>
-        <mat-error *ngIf="getFormControl('guestName').hasError('required')" [innerHTML]="getErrorMessage('guestName', 'required')"></mat-error>
-    </mat-form-field>
+        <mat-error
+          *ngIf="getFormControl('guestName').hasError('pattern')"
+          [innerHTML]="getErrorMessage('guestName', 'pattern')"
+        ></mat-error>
+        <mat-error
+          *ngIf="getFormControl('guestName').hasError('maxlength')"
+          [innerHTML]="getErrorMessage('guestName', 'maxlength')"
+        ></mat-error>
+        <mat-error
+          *ngIf="getFormControl('guestName').hasError('required')"
+          [innerHTML]="getErrorMessage('guestName', 'required')"
+        ></mat-error>
+      </mat-form-field>
 
-    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
-        <mat-select required="required" formControlName="country" [errorStateMatcher]="customErrorStateMatcher">
-            <div *ngFor="let country of countries" >
-                <mat-optgroup *ngIf="country.countryName.startsWith('A')" label="A">
-                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
-                </mat-optgroup>
-                <mat-optgroup *ngIf="country.countryName.startsWith('B')" label="B">
-                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
-                </mat-optgroup>
-                <mat-optgroup *ngIf="country.countryName.startsWith('C')" label="C">
-                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
-                </mat-optgroup>
-                <mat-optgroup *ngIf="country.countryName.startsWith('D')" label="D">
-                    <mat-option [value]="country.countryName">{{ country.countryName }}</mat-option>
-                </mat-optgroup>
-            </div>
+      <mat-form-field
+        class="width-100"
+        floatLabel="auto"
+        appearance="outline"
+        color="primary"
+      >
+        <mat-select
+          required="required"
+          formControlName="country"
+          [errorStateMatcher]="customErrorStateMatcher"
+        >
+          <div *ngFor="let country of countries">
+            <mat-optgroup *ngIf="country.countryName.startsWith('A')" label="A">
+              <mat-option [value]="country.countryName">{{
+                country.countryName
+              }}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup *ngIf="country.countryName.startsWith('B')" label="B">
+              <mat-option [value]="country.countryName">{{
+                country.countryName
+              }}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup *ngIf="country.countryName.startsWith('C')" label="C">
+              <mat-option [value]="country.countryName">{{
+                country.countryName
+              }}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup *ngIf="country.countryName.startsWith('D')" label="D">
+              <mat-option [value]="country.countryName">{{
+                country.countryName
+              }}</mat-option>
+            </mat-optgroup>
+          </div>
         </mat-select>
         <mat-label>Country</mat-label>
         <mat-hint align="end">Which country?</mat-hint>
         <mat-icon matPrefix>place</mat-icon>
-        <mat-error *ngIf="getFormControl('country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
-    </mat-form-field>
+        <mat-error
+          *ngIf="getFormControl('country').hasError('required')"
+          [innerHTML]="getErrorMessage('country', 'required')"
+        ></mat-error>
+      </mat-form-field>
 
-    <mat-form-field class="width-100" floatLabel="auto" appearance="outline" color="primary">
-        <input type="text" matInput required="required" formControlName="city" [errorStateMatcher]="customErrorStateMatcher" [matAutocomplete]="autoComplete">
+      <mat-form-field
+        class="width-100"
+        floatLabel="auto"
+        appearance="outline"
+        color="primary"
+      >
+        <input
+          type="text"
+          matInput
+          required="required"
+          formControlName="city"
+          [errorStateMatcher]="customErrorStateMatcher"
+          [matAutocomplete]="autoComplete"
+        />
         <mat-label>City</mat-label>
         <mat-autocomplete #autoComplete="matAutocomplete">
-            <mat-option *ngIf="isCitiesLoading">Loading...</mat-option>
-            <mat-option *ngFor="let city of cities" [value]="city.cityName"> {{city.cityName}} </mat-option>
+          <mat-option *ngIf="isCitiesLoading">Loading...</mat-option>
+          <mat-option *ngFor="let city of cities" [value]="city.cityName">
+            {{ city.cityName }}
+          </mat-option>
         </mat-autocomplete>
         <mat-hint align="end">Which city?</mat-hint>
         <mat-icon matPrefix>map</mat-icon>
-        <mat-error *ngIf="getFormControl('city').hasError('required')" [innerHTML]="getErrorMessage('city', 'required')"></mat-error>
-    </mat-form-field>
+        <mat-error
+          *ngIf="getFormControl('city').hasError('required')"
+          [innerHTML]="getErrorMessage('city', 'required')"
+        ></mat-error>
+      </mat-form-field>
 
-    <div class="ml mt mb">
+      <div class="ml mt mb">
         <mat-radio-group formControlName="receivePromotionNewsletters">
-            <mat-label class="mr">Receive promotion newsletters?</mat-label>
-            <mat-radio-button value="yes" class="mr">Yes, Please!</mat-radio-button>
-            <mat-radio-button value="no" class="mr">No, I'm good!</mat-radio-button>
-            <mat-error *ngIf="getFormControl('receivePromotionNewsletters').hasError('required') && getFormControl('receivePromotionNewsletters').touched" [innerHTML]="getErrorMessage('receivePromotionNewsletters', 'required')"></mat-error>
+          <mat-label class="mr">Receive promotion newsletters?</mat-label>
+          <mat-radio-button value="yes" class="mr"
+            >Yes, Please!</mat-radio-button
+          >
+          <mat-radio-button value="no" class="mr"
+            >No, I'm good!</mat-radio-button
+          >
+          <mat-error
+            *ngIf="
+              getFormControl('receivePromotionNewsletters').hasError(
+                'required'
+              ) && getFormControl('receivePromotionNewsletters').touched
+            "
+            [innerHTML]="
+              getErrorMessage('receivePromotionNewsletters', 'required')
+            "
+          ></mat-error>
         </mat-radio-group>
-    </div>
+      </div>
 
-    <div class="ml mt mb">
+      <div class="ml mt mb">
         <mat-label>Hobbies:</mat-label>
         <div>
-            <mat-checkbox formControlName="allHobbies" (change)="onChangeAllHobbiesChecked()" [indeterminate]="!allHobbiesSelected() && !noHobbySelected()">All</mat-checkbox>
+          <mat-checkbox
+            formControlName="allHobbies"
+            (change)="onChangeAllHobbiesChecked()"
+            [indeterminate]="!allHobbiesSelected() && !noHobbySelected()"
+            >All</mat-checkbox
+          >
         </div>
         <div formArrayName="hobbies">
           <div *ngFor="let hobby of hobbiesFormArray.controls; let i = index">
-            <mat-checkbox formGroupName="{{i}}" formControlName="{{i}}" color="primary" (change)="onHobbyChange(i)">{{hobbies[i].hobbyName}}</mat-checkbox>
+            <mat-checkbox
+              formGroupName="{{ i }}"
+              formControlName="{{ i }}"
+              color="primary"
+              (change)="onHobbyChange(i)"
+              >{{ hobbies[i].hobbyName }}</mat-checkbox
+            >
           </div>
         </div>
       </div>
 
-
-    <div class="mt mb mr ml">
+      <div class="mt mb mr ml">
         <button mat-fab color="primary" class="mr" type="submit">
-            <mat-icon>
-                <span class="material-symbols-outlined">
-                    save
-                </span>
-            </mat-icon>
+          <mat-icon>
+            <span class="material-symbols-outlined"> save </span>
+          </mat-icon>
         </button>
         <button mat-fab color="accent" class="mr" type="button">
-            <mat-icon>
-                <span class="material-symbols-outlined">
-                    cancel
-                </span>
-            </mat-icon>
+          <mat-icon>
+            <span class="material-symbols-outlined"> cancel </span>
+          </mat-icon>
         </button>
         <button mat-fab color="accent" class="mr" type="button">
-            <mat-icon>
-                <span class="material-symbols-outlined">
-                    delete_forever
-                </span>
-            </mat-icon>
+          <mat-icon>
+            <span class="material-symbols-outlined"> delete_forever </span>
+          </mat-icon>
         </button>
-    </div>
+      </div>
 
-    <div>
+      <div>
         {{ formGroup.value | json }}
+      </div>
     </div>
+
+    <div class="box-2">
+      <mat-form-field class="width-50">
+        <mat-label>check in</mat-label>
+      </mat-form-field>
+    </div>
+  </div>
 </form>
-
-

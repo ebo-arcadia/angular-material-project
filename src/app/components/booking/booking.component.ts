@@ -27,6 +27,9 @@ export class BookingComponent implements OnInit {
     { id: 5, hobbyName: 'Sport' },
     { id: 6, hobbyName: 'Movie' },
   ];
+  date: Date = new Date(2022, 10, 5);
+  minDate: Date = new Date(2022, 10, 6);
+  maxDate: Date = new Date(2022, 10, 10);
 
   constructor(
     private _countriesService: CountriesService,
@@ -49,8 +52,8 @@ export class BookingComponent implements OnInit {
       ]),
       hobbies: new FormArray([]),
       allHobbies: new FormControl(false),
-      checkInDate: new FormControl(null),
-      checkOutDate: new FormControl(null),
+      checkInDate: new FormControl(null, [Validators.required]),
+      checkOutDate: new FormControl(null, [Validators.required]),
     });
 
     this.hobbies.forEach(() => {
@@ -87,6 +90,8 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.minDate);
+    console.log(this.maxDate);
     this._countriesService.getCountries().subscribe({
       next: (value: any) => {
         this.countries = value;
@@ -147,7 +152,14 @@ export class BookingComponent implements OnInit {
         if (validatorType === 'required') return 'Please select yes or no';
         else return '';
       }
-
+      case 'checkInDate': {
+        if (validatorType === 'required') return 'Please pick a check in date';
+        else return '';
+      }
+      case 'checkOutDate': {
+        if (validatorType === 'required') return 'Please pick a check out date';
+        else return '';
+      }
       default:
         return '';
     }

@@ -199,10 +199,58 @@
         {{ formGroup.value | json }}
       </div>
     </div>
-
     <div class="box-2">
-      <mat-form-field class="width-50">
-        <mat-label>check in</mat-label>
+      <mat-form-field
+        class="width-100"
+        floatLabel="auto"
+        appearance="outline"
+        color="accent"
+      >
+        <input
+          type="text"
+          matInput
+          [matDatepicker]="checkInDatePicker"
+          required="required"
+          [errorStateMatcher]="customErrorStateMatcher"
+          [min]="minDate"
+          [max]="maxDate"
+        />
+        <mat-label>Check in: </mat-label>
+        <mat-hint align="end">When would you like to check in?</mat-hint>
+        <mat-icon matPrefix>date_range</mat-icon>
+        <mat-datepicker-toggle matSuffix [for]="checkInDatePicker">
+          <mat-icon matDatepickerToggleIcon>arrow_drop_down_circle</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #checkInDatePicker></mat-datepicker>
+        <mat-error
+          *ngIf="getFormControl('checkInDate').hasError('required')"
+          [innerHTML]="getErrorMessage('checkInDate', 'required')"
+        ></mat-error>
+      </mat-form-field>
+      <mat-form-field
+        class="width-100"
+        floatLabel="auto"
+        appearance="outline"
+        color="accent"
+      >
+        <input
+          type="text"
+          matInput
+          [matDatepicker]="checkOutDatePicker"
+          required="required"
+          [errorStateMatcher]="customErrorStateMatcher"
+        />
+        <mat-label>Check out: </mat-label>
+        <mat-hint align="end">When would you like to check out?</mat-hint>
+        <mat-icon matPrefix>date_range</mat-icon>
+        <mat-datepicker-toggle matSuffix [for]="checkOutDatePicker">
+          <mat-icon matDatepickerToggleIcon>arrow_drop_down_circle</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #checkOutDatePicker></mat-datepicker>
+        <mat-error
+          *ngIf="getFormControl('checkOutDate').hasError('required')"
+          [innerHTML]="getErrorMessage('checkOutDate', 'required')"
+        ></mat-error>
       </mat-form-field>
     </div>
   </div>

@@ -5,6 +5,7 @@ import { CustomErrorStateMatcher } from 'src/app/helper/custom-error-state-match
 import { CitiesService } from 'src/app/services/cities.service';
 import { City } from 'src/app/model/City';
 import { debounceTime, tap, switchMap } from 'rxjs/operators';
+import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-booking',
@@ -27,9 +28,25 @@ export class BookingComponent implements OnInit {
     { id: 5, hobbyName: 'Sport' },
     { id: 6, hobbyName: 'Movie' },
   ];
-  date: Date = new Date(2022, 10, 5);
-  minDate: Date = new Date(2022, 10, 6);
-  maxDate: Date = new Date(2022, 10, 10);
+  startDate: Date = new Date(2022, 1, 1);
+  minDate: Date = new Date(2022, 10, 1);
+  maxDate: Date = new Date(2022, 10, 30);
+  dateFilter: (date: Date | null) => boolean = (date: Date | null) => {
+    if (!date) {
+      return false;
+    }
+    const day = date.getDay();
+    return day == 0;
+  };
+  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+    const date = cellDate.getDate();
+    if (view == 'month') {
+      return date == 1 ? 'highlight-date' : '';
+    } else if (view == 'year') {
+      return date == 1 ? 'highlight-date' : '';
+    }
+    return '';
+  };
 
   constructor(
     private _countriesService: CountriesService,

@@ -215,25 +215,17 @@
           [max]="maxDate"
           formControlName="checkInDate"
           (click)="checkInDatePicker.open()"
-          [matDatepickerFilter]="dateFilter"
         />
         <mat-label>Check in: </mat-label>
         <mat-hint align="end">When would you like to check in?</mat-hint>
         <mat-icon matPrefix>calendar_month</mat-icon>
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="checkInDatePicker"
-          [disabled]="false"
-        >
+        <mat-datepicker-toggle matSuffix [for]="checkInDatePicker">
           <mat-icon matDatepickerToggleIcon>arrow_drop_down_circle</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker
           #checkInDatePicker
-          [disabled]="false"
           startView="month"
-          [startAt]="startDate"
           color="primary"
-          [dateClass]="dateClass"
           touchUi="true"
         ></mat-datepicker>
         <mat-error
@@ -251,10 +243,11 @@
           matInput
           [matDatepicker]="checkOutDatePicker"
           required="required"
+          [min]="minDate"
+          [max]="maxDate"
           [errorStateMatcher]="customErrorStateMatcher"
           formControlName="checkOutDate"
           (click)="checkOutDatePicker.open()"
-          [matDatepickerFilter]="dateFilter"
         />
         <mat-label>Check out: </mat-label>
         <mat-hint align="end">When would you like to check out?</mat-hint>
@@ -266,8 +259,6 @@
           #checkOutDatePicker
           startView="month"
           color="warn"
-          [startAt]="startDate"
-          [dateClass]="dateClass"
           touchUi="true"
         ></mat-datepicker>
         <mat-error

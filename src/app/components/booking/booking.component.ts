@@ -28,15 +28,18 @@ export class BookingComponent implements OnInit {
     { id: 5, hobbyName: 'Sport' },
     { id: 6, hobbyName: 'Movie' },
   ];
-  startDate: Date = new Date(2022, 1, 1);
-  minDate: Date = new Date(2022, 10, 1);
-  maxDate: Date = new Date(2022, 10, 30);
+  date: Date = new Date();
+  currentYear: number = this.date.getFullYear();
+  currentMonth: number = this.date.getMonth();
+  currentDay: number = this.date.getDate();
+  minDate: Date = new Date(this.currentYear, this.currentMonth, 1);
+  maxDate: Date = new Date(this.currentYear, this.currentMonth, 27);
   dateFilter: (date: Date | null) => boolean = (date: Date | null) => {
     if (!date) {
       return false;
     }
     const day = date.getDay();
-    return day == 0;
+    return day == 1;
   };
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     const date = cellDate.getDate();
@@ -107,8 +110,6 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.minDate);
-    console.log(this.maxDate);
     this._countriesService.getCountries().subscribe({
       next: (value: any) => {
         this.countries = value;

@@ -8,13 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { DateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import * as moment from 'moment';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BookingComponent,
-  ],
+  declarations: [AppComponent, BookingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,9 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

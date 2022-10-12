@@ -266,6 +266,36 @@
           [innerHTML]="getErrorMessage('checkOutDate', 'required')"
         ></mat-error>
       </mat-form-field>
+      <mat-form-field
+        class="width-100"
+        color="warn"
+        floatLabel="auto"
+        appearance="outline"
+      >
+        <mat-label>Select a period: </mat-label>
+        <mat-hint align="end">Search home by period?</mat-hint>
+        <mat-icon matPrefix>calendar_month</mat-icon>
+        <mat-date-range-input [rangePicker]="dateRangePicker">
+          <input
+            matStartDate
+            type="text"
+            matInput
+            formControlName="searchPeriodStart"
+          />
+          <input
+            matEndDate
+            type="text"
+            matInput
+            formControlName="searchPeriodEnd"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="dateRangePicker"
+          ><mat-icon matDatepickerToggleIcon
+            >arrow_drop_down_circle</mat-icon
+          ></mat-datepicker-toggle
+        >
+        <mat-date-range-picker #dateRangePicker></mat-date-range-picker>
+      </mat-form-field>
     </div>
   </div>
 </form>

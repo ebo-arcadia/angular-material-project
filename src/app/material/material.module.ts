@@ -10,6 +10,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonToggleModule } from '@angular/material/button-toggle'
+import { MatChipsModule } from '@angular/material/chips';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -22,6 +24,8 @@ const MaterialComponents = [
   MatRadioModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatButtonToggleModule,
+  MatChipsModule,
 ];
 
 @NgModule({

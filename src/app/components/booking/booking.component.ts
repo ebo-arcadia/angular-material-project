@@ -76,6 +76,7 @@ export class BookingComponent implements OnInit {
       checkOutDate: new FormControl(null, [Validators.required]),
       searchPeriodStart: new FormControl(null),
       searchPeriodEnd: new FormControl(null),
+      priceRange: new FormControl(null),
     });
 
     this.hobbies.forEach(() => {

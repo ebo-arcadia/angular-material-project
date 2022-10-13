@@ -296,6 +296,23 @@
         >
         <mat-date-range-picker #dateRangePicker></mat-date-range-picker>
       </mat-form-field>
+
+      <div class="mb mt">
+        <mat-label>Price range</mat-label>
+        <mat-button-toggle-group formControlName="priceRange">
+          <mat-button-toggle value="most affordable">$</mat-button-toggle>
+          <mat-button-toggle value="affordable">$$</mat-button-toggle>
+          <mat-button-toggle value="upgrade">$$$</mat-button-toggle>
+          <mat-button-toggle value="royal">$$$$</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <div class="mb mt">
+        <mat-chip-list>
+          <mat-chip color="warn" selected>Chip button</mat-chip>
+        </mat-chip-list>
+      </div>
+
     </div>
   </div>
 </form>

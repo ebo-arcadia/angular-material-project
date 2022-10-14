@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+<mat-dialog-content [formGroup]="formGroup">
+    <mat-form-field>
+        <input matInput placeholder="available appliances" formControlName="appliances">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="save()">save</button>
+    <button class="mat-raised-button" (click)="close()">close</button>
+</mat-dialog-actions>

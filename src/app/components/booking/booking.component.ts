@@ -6,6 +6,8 @@ import { CitiesService } from 'src/app/services/cities.service';
 import { City } from 'src/app/model/City';
 import { debounceTime, tap, switchMap } from 'rxjs/operators';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SelectAppliancesComponent } from '../select-appliances/select-appliances.component';
 
 @Component({
   selector: 'app-booking',
@@ -53,7 +55,8 @@ export class BookingComponent implements OnInit {
 
   constructor(
     private _countriesService: CountriesService,
-    private _citiesService: CitiesService
+    private _citiesService: CitiesService,
+    private _dialog: MatDialog,
   ) {
     this.formGroup = new FormGroup({
       place: new FormControl('', [
@@ -184,5 +187,24 @@ export class BookingComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+    dialogConfig.data = {
+      title: "What appliances would you like to have?"
+    }
+
+    this._dialog.open(SelectAppliancesComponent, dialogConfig);
+
+    const dialogRef = this._dialog.open(SelectAppliancesComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.info("dialog output: ", data)
+    )
   }
 }

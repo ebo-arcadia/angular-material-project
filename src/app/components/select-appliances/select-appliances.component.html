@@ -1,41 +1,31 @@
 <h2 mat-dialog-title>{{title}}</h2>
 
-<mat-dialog-content>
-    <mat-form-field class="chip-list" appearance="fill">
-        <mat-chip-list #chipList aria-label="appliance selection">
-            <mat-chip *ngFor="let appliance of appliances" (removed)="remove(appliance)">
-                {{appliance}}
-                <button matChipRemove>
-                    <mat-icon>cancel</mat-icon>
-                </button>
-            </mat-chip>
-            <input type="text" matInput placeholder="refactor using form control" formControlName="appliance">
-            <input
-                placeholder="add appliances..." 
-                #applianceInput
-                [formControl]="applianceCtrl" 
-                [matAutocomplete]="auto"
-                [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                (matChipInputTokenEnd)="add($event)">
-        </mat-chip-list>
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option [value]="appliances">
-                {{appliances}}
-            </mat-option>
-        </mat-autocomplete>
+<mat-dialog-content [formGroup]="applianceGroup">
+    <mat-form-field>
+        <mat-label>What appliances would you like to have?</mat-label>
+        <input type="text" 
+            placeholder="select appliances..." 
+            matInput 
+            formControlName="appliances" 
+            [matAutocomplete]="appliancesAutocomplete">
     </mat-form-field>
+
+    <mat-autocomplete #appliancesAutocomplete="matAutocomplete">
+        <mat-option *ngFor="let appliance of allAppliances" [value]="appliance.applianceName">
+            {{appliance.applianceName}}
+        </mat-option>
+    </mat-autocomplete>
 </mat-dialog-content>
 
-<div> {{ formGroup.value | json }}</div>
+<div> {{ applianceGroup.value | json }}</div>
 
 <mat-dialog-actions>
     <mat-chip-list>
         <mat-chip color="accent">
-            <button class="mat-raised-button" (click)="save()">save</button>
+            <button class="mat-raised-button">save</button>
         </mat-chip>
         <mat-chip>
-            <button class="mat-raised-button" (click)="close()">close</button>
+            <button class="mat-raised-button">close</button>
         </mat-chip>
     </mat-chip-list>
 </mat-dialog-actions>

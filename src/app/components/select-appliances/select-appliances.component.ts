@@ -5,6 +5,7 @@ import { Observable, startWith, map} from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Appliance } from 'src/app/model/appliance';
 
 @Component({
   selector: 'app-select-appliances',
@@ -17,8 +18,8 @@ export class SelectAppliancesComponent implements OnInit {
   formGroup: FormGroup;
   applianceCtrl = new FormControl('');
   appliances: string[] = ['microwave', 'fridge', 'internet', 'table']
-  filteredAppliances: Observable<string[]>;
-  allAppliances: string[] = ['bed', 'lamp', 'swimming pool', 'air conditioning', 'parking', 'towel']
+  // filteredAppliances: Observable<Appliance[]>;
+  allAppliances: Appliance[] = [{applianceName: 'WIFI'}]
   @ViewChild('applianceInput') applianceInput!: ElementRef<HTMLInputElement>;
 
   constructor(
@@ -30,18 +31,19 @@ export class SelectAppliancesComponent implements OnInit {
     this.formGroup = new FormGroup({
       appliances: new FormControl('', Validators.required)
     });
-    this.filteredAppliances = this.applianceCtrl.valueChanges.pipe(
-      startWith(null),
-      map((appliance: string | null) => (appliance ? this._filter(appliance) : this.allAppliances.slice()))
-    )
+    // this.filteredAppliances = this.applianceCtrl.valueChanges.pipe(
+    //   startWith(null),
+    //   map((appliance: string | null) => (appliance ? this._filter(appliance) : this.allAppliances.slice()))
+    // )
+    appliance: new FormControl(null)
   }
 
   ngOnInit(): void {}
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.allAppliances.filter(appliance => appliance.toLowerCase().includes(filterValue));
-  }
+  // private _filter(value: string): Appliance[] {
+  //   const filterValue = value.toLowerCase();
+  //   return this.allAppliances.filter(appliance => appliance.toLowerCase().includes(filterValue));
+  // }
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();

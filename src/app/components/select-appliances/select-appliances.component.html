@@ -9,6 +9,7 @@
                     <mat-icon>cancel</mat-icon>
                 </button>
             </mat-chip>
+            <input type="text" matInput placeholder="refactor using form control" formControlName="appliance">
             <input
                 placeholder="add appliances..." 
                 #applianceInput
@@ -19,12 +20,14 @@
                 (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngFor="let appliance of filteredAppliances | async" [value]="appliance">
-                {{appliance}}
+            <mat-option [value]="appliances">
+                {{appliances}}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
 </mat-dialog-content>
+
+<div> {{ formGroup.value | json }}</div>
 
 <mat-dialog-actions>
     <mat-chip-list>

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Appliance } from 'src/app/model/Appliance';
 import { startWith, map } from 'rxjs';
+import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes'
 
 @Component({
   selector: 'app-select-appliances',
@@ -31,6 +32,13 @@ export class SelectAppliancesComponent implements OnInit {
     {applianceName: "electrical toothbrush"},
   ];
   filteredAppliances: Observable<Appliance[]>;
+  newAppliances: Appliance[] = [
+    {applianceName: "WIFI"},
+    {applianceName: "Whatsapp"},
+    {applianceName: "parking"},
+  ]
+
+  keysCodesConvertInputToMatChip: number[] = [ENTER, COMMA, TAB]
 
   constructor(
     
@@ -58,6 +66,12 @@ export class SelectAppliancesComponent implements OnInit {
 
   getFormControl(controlName: string): FormControl {
     return this.applianceGroup.get(controlName) as FormControl;
+  }
+  
+  addAppliance(event: any): void {
+    if ((event.value || "").trim()){
+      this.newAppliances.push({ applianceName: event.value.trim() }
+      )}
   }
 
 }

@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{title}}</h2>
 
 <mat-dialog-content [formGroup]="applianceGroup">
-    <mat-form-field>
+    <mat-form-field class="width-100">
         <mat-label>What appliances would you like to have?</mat-label>
         <input type="text" 
             placeholder="select appliances..." 
@@ -15,6 +15,16 @@
             {{appliance.applianceName}}
         </mat-option>
     </mat-autocomplete>
+
+    <!-- input using chips -->
+    <mat-form-field class="width-100">
+        <mat-label>Select appliances with chips</mat-label>
+        <input type="text" matInput [matChipInputFor]="chipAppliancesList" [matChipInputSeparatorKeyCodes]="keysCodesConvertInputToMatChip" (matChipInputTokenEnd)="addAppliance($event)">
+        <mat-chip-list #chipAppliancesList>
+            <mat-chip *ngFor="let newAppliance of newAppliances">{{ newAppliance.applianceName}}</mat-chip>
+        </mat-chip-list>
+    </mat-form-field>
+
 </mat-dialog-content>
 
 <div> {{ applianceGroup.value | json }}</div>

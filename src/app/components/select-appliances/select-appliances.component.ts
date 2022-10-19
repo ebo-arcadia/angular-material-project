@@ -1,7 +1,9 @@
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import { Appliance } from 'src/app/model/appliance';
+import { Observable } from 'rxjs';
+import { Appliance } from 'src/app/model/Appliance';
+import { startWith, map } from 'rxjs';
 
 @Component({
   selector: 'app-select-appliances',
@@ -13,10 +15,22 @@ export class SelectAppliancesComponent implements OnInit {
   applianceGroup: FormGroup;
   allAppliances: Appliance[] = [
     {applianceName: "WIFI"},
+    {applianceName: "Whatsapp"},
     {applianceName: "parking"},
+    {applianceName: "papers"},
     {applianceName: "kitchen"},
+    {applianceName: "kettle"},
     {applianceName: "table"},
-  ]
+    {applianceName: "tennis court"},
+    {applianceName: "microwave"},
+    {applianceName: "massage shop"},
+    {applianceName: "washing machine"},
+    {applianceName: "coffee maker"},
+    {applianceName: "cough drops"},
+    {applianceName: "external chargers"},
+    {applianceName: "electrical toothbrush"},
+  ];
+  filteredAppliances: Observable<Appliance[]>;
 
   constructor(
     
@@ -25,9 +39,25 @@ export class SelectAppliancesComponent implements OnInit {
   ) {
     this.applianceGroup = new FormGroup({
       appliances: new FormControl(null)
-    })
+    });
+    this.filteredAppliances = this.getFormControl("appliances").valueChanges.pipe(
+      startWith(""),
+      map((appliance: string | null) => { 
+        return appliance 
+        ? 
+        (() => { return this.allAppliances.filter(applianceObj => 
+          applianceObj.applianceName.toLowerCase().indexOf(appliance.toLowerCase()) === 0);
+        })()
+        : 
+        this.allAppliances.slice();
+      })
+    )
   }
 
   ngOnInit(): void {}
+
+  getFormControl(controlName: string): FormControl {
+    return this.applianceGroup.get(controlName) as FormControl;
+  }
 
 }

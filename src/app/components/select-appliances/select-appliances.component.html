@@ -11,7 +11,7 @@
     </mat-form-field>
 
     <mat-autocomplete #appliancesAutocomplete="matAutocomplete">
-        <mat-option *ngFor="let appliance of allAppliances" [value]="appliance.applianceName">
+        <mat-option *ngFor="let appliance of filteredAppliances | async" [value]="appliance.applianceName">
             {{appliance.applianceName}}
         </mat-option>
     </mat-autocomplete>

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -14,6 +14,7 @@ import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes'
 export class SelectAppliancesComponent implements OnInit {
   title: string = '';
   applianceGroup: FormGroup;
+  formControl: FormGroup;
   allAppliances: Appliance[] = [
     {applianceName: "WIFI"},
     {applianceName: "Whatsapp"},
@@ -40,6 +41,8 @@ export class SelectAppliancesComponent implements OnInit {
 
   keysCodesConvertInputToMatChip: number[] = [ENTER, COMMA, TAB]
 
+  @ViewChild("applianceInput") applianceInput!: ElementRef<HTMLInputElement>;
+
   constructor(
     
     private _dialogRef: MatDialogRef<SelectAppliancesComponent>,
@@ -59,7 +62,10 @@ export class SelectAppliancesComponent implements OnInit {
         : 
         this.allAppliances.slice();
       })
-    )
+    );
+    this.formControl = new FormGroup({
+      newAppliances: new FormControl(null)
+    });
   }
 
   ngOnInit(): void {}
@@ -69,9 +75,11 @@ export class SelectAppliancesComponent implements OnInit {
   }
   
   addAppliance(event: any): void {
-    if ((event.value || "").trim()){
-      this.newAppliances.push({ applianceName: event.value.trim() }
-      )}
+    if ((event.value || "").trim()) {
+      this.newAppliances.push( { applianceName: event.value.trim() });
+      this.formControl.patchValue({ newAppliances: null})
+      };
+      this.applianceInput.nativeElement.value = "";
   }
 
 }

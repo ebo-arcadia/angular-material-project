@@ -19,7 +19,7 @@
     <!-- input using chips -->
     <mat-form-field class="width-100">
         <mat-label>Select appliances with chips</mat-label>
-        <input type="text" matInput [matChipInputFor]="chipAppliancesList" [matChipInputSeparatorKeyCodes]="keysCodesConvertInputToMatChip" (matChipInputTokenEnd)="addAppliance($event)">
+        <input type="text" matInput formControlName="newAppliances" #applianceInput [matChipInputFor]="chipAppliancesList" [matChipInputSeparatorKeyCodes]="keysCodesConvertInputToMatChip" (matChipInputTokenEnd)="addAppliance($event)">
         <mat-chip-list #chipAppliancesList>
             <mat-chip *ngFor="let newAppliance of newAppliances">{{ newAppliance.applianceName}}</mat-chip>
         </mat-chip-list>

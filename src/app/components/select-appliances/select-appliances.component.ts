@@ -84,4 +84,7 @@ export class SelectAppliancesComponent implements OnInit {
     this.applianceInput.nativeElement.value = "";
   }
 
+  save() { this._dialogRef.close(this.applianceGroup.value)};
+  close() {this._dialogRef.close()};
+
 }

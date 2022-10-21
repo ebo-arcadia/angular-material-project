@@ -1,4 +1,6 @@
-<h2 mat-dialog-title><mat-label>What appliances would you like to have?</mat-label></h2>
+<h2 mat-dialog-title>
+    <mat-label>What appliances would you like to have?</mat-label>
+</h2>
 
 <mat-dialog-content [formGroup]="applianceGroup">
 
@@ -28,18 +30,18 @@
             (matChipInputTokenEnd)="addAppliance($event)"
         >
     </mat-chip-list>
-
+    
 </mat-dialog-content>
-
 <mat-dialog-actions>
     <mat-chip-list>
         <mat-chip color="accent">
-            <button class="mat-raised-button">save</button>
+            <button class="mat-raised-button" (click)="save()">save</button>
         </mat-chip>
         <mat-chip>
-            <button class="mat-raised-button">close</button>
+            <button class="mat-raised-button" (click)="close()">close</button>
         </mat-chip>
     </mat-chip-list>
+
 </mat-dialog-actions>
 
 

@@ -1,8 +1,22 @@
-<h2 mat-dialog-title>{{title}}</h2>
+<h2 mat-dialog-title><mat-label>What appliances would you like to have?</mat-label></h2>
 
 <mat-dialog-content [formGroup]="applianceGroup">
-    <mat-form-field class="width-100">
-        <mat-label>What appliances would you like to have?</mat-label>
+
+    <mat-autocomplete #appliancesAutocomplete="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let appliance of filteredAppliances | async" [value]="appliance.applianceName">
+            {{appliance.applianceName}}
+        </mat-option>
+    </mat-autocomplete>
+
+    <mat-chip-list #chipAppliancesList>
+        <mat-chip *ngFor="let appliance of allAppliances" 
+            [removable]="true" 
+            (removed)="removeAppliance(appliance)"
+            [value]="appliance.applianceName">
+            {{ appliance.applianceName}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+
         <input type="text" 
             placeholder="select appliances..." 
             matInput 
@@ -13,16 +27,6 @@
             [matChipInputSeparatorKeyCodes]="keysCodesConvertInputToMatChip" 
             (matChipInputTokenEnd)="addAppliance($event)"
         >
-    </mat-form-field>
-
-    <mat-autocomplete #appliancesAutocomplete="matAutocomplete" (optionSelected)="selected($event)">
-        <mat-option *ngFor="let appliance of filteredAppliances | async" [value]="appliance.applianceName">
-            {{appliance.applianceName}}
-        </mat-option>
-    </mat-autocomplete>
-
-    <mat-chip-list #chipAppliancesList>
-        <mat-chip *ngFor="let appliance of allAppliances">{{ appliance.applianceName}}</mat-chip>
     </mat-chip-list>
 
 </mat-dialog-content>

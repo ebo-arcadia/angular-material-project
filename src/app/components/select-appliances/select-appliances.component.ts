@@ -12,7 +12,6 @@ import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes'
   styleUrls: ['./select-appliances.component.css']
 })
 export class SelectAppliancesComponent implements OnInit {
-  title: string = '';
   applianceGroup: FormGroup;
   allAppliances: Appliance[] = [
     {applianceName: "WIFI"},
@@ -71,6 +70,12 @@ export class SelectAppliancesComponent implements OnInit {
       this.applianceGroup.patchValue({ allAppliances: null});
       this.applianceInput.nativeElement.value = "";
       };
+  }
+
+  removeAppliance(appliance: Appliance) {
+    const applianceIndex = this.allAppliances.indexOf(appliance)
+    if (applianceIndex >= 0) { this.allAppliances.splice(applianceIndex, 1)}
+    console.info("appliance chip item removed!")
   }
 
   selected(event: any) {

@@ -6,28 +6,26 @@
         <input type="text" 
             placeholder="select appliances..." 
             matInput 
+            #applianceInput 
             formControlName="appliances" 
-            [matAutocomplete]="appliancesAutocomplete">
+            [matAutocomplete]="appliancesAutocomplete"
+            [matChipInputFor]="chipAppliancesList" 
+            [matChipInputSeparatorKeyCodes]="keysCodesConvertInputToMatChip" 
+            (matChipInputTokenEnd)="addAppliance($event)"
+        >
     </mat-form-field>
 
-    <mat-autocomplete #appliancesAutocomplete="matAutocomplete">
+    <mat-autocomplete #appliancesAutocomplete="matAutocomplete" (optionSelected)="selected($event)">
         <mat-option *ngFor="let appliance of filteredAppliances | async" [value]="appliance.applianceName">
             {{appliance.applianceName}}
         </mat-option>
     </mat-autocomplete>
 
-    <!-- input using chips -->
-    <mat-form-field class="width-100">
-        <mat-label>Select appliances with chips</mat-label>
-        <input type="text" matInput formControlName="newAppliances" #applianceInput [matChipInputFor]="chipAppliancesList" [matChipInputSeparatorKeyCodes]="keysCodesConvertInputToMatChip" (matChipInputTokenEnd)="addAppliance($event)">
-        <mat-chip-list #chipAppliancesList>
-            <mat-chip *ngFor="let newAppliance of newAppliances">{{ newAppliance.applianceName}}</mat-chip>
-        </mat-chip-list>
-    </mat-form-field>
+    <mat-chip-list #chipAppliancesList>
+        <mat-chip *ngFor="let appliance of allAppliances">{{ appliance.applianceName}}</mat-chip>
+    </mat-chip-list>
 
 </mat-dialog-content>
-
-<div> {{ applianceGroup.value | json }}</div>
 
 <mat-dialog-actions>
     <mat-chip-list>

@@ -92,6 +92,11 @@
                 country.countryName
               }}</mat-option>
             </mat-optgroup>
+            <mat-optgroup *ngIf="country.countryName.startsWith('S')" label="S">
+              <mat-option [value]="country.countryName">{{
+                country.countryName
+              }}</mat-option>
+            </mat-optgroup>
           </div>
         </mat-select>
         <mat-label>Country</mat-label>

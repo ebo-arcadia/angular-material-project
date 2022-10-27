@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService } from 'src/app/services/bookings.service';
 import { Booking } from 'src/app/model/Booking';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-booking-list',
@@ -11,6 +10,8 @@ import { map } from 'rxjs';
 export class BookingListComponent implements OnInit {
 
   bookings: Booking[] = [];
+  bookingTableColumns: string[] = ['guestName'];
+
   constructor(private _bookingsService: BookingService) { }
 
   ngOnInit(): void {

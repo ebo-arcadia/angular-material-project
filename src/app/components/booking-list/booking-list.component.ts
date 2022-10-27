@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService } from 'src/app/services/bookings.service';
 import { Booking } from 'src/app/model/Booking';
+import { Observable } from 'rxjs';
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: 'app-booking-list',
@@ -10,16 +12,14 @@ import { Booking } from 'src/app/model/Booking';
 export class BookingListComponent implements OnInit {
 
   bookings: Booking[] = [];
-  bookingTableColumns: string[] = ['guestName'];
+  dataSource = new MatTableDataSource<Booking>();
+  displayedTableColumns: string[] = ['guestId', 'guestName'];
 
-  constructor(private _bookingsService: BookingService) { }
+  constructor(private readonly _bookingsService: BookingService) { }
 
-  ngOnInit(): void {
-    this._bookingsService.getBookings().subscribe(
-      {
-      next: (bookings: Booking[]) => {bookings.forEach(booking => this.bookings.push(booking))},
-      error: (err: Error) => {console.info(err)}
-    });
+
+  ngOnInit(): void{
+    this._bookingsService.getBookings().subscribe((response) => { this.dataSource.data = response});
   }
 
 }

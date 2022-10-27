@@ -1,7 +1,7 @@
 export interface Booking
 {
-    id: string;
+    guestId: number;
     guestName: string;
     location: string;
-    date: Date;
+    date: string;
 }

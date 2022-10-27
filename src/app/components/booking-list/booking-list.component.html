@@ -4,14 +4,20 @@
 
 <form>
     <div>
-        <table mat-table [dataSource]="bookings">
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="guestId">
+                <th mat-header-cell *matHeaderCellDef>Guest ID</th>
+                <td mat-cell *matCellDef="let booking">{{booking.guestId}}</td>
+            </ng-container>
+
             <ng-container matColumnDef="guestName">
                 <th mat-header-cell *matHeaderCellDef>Guest Name</th>
                 <td mat-cell *matCellDef="let booking">{{booking.guestName}}</td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="bookingTableColumns"></tr>
-            <tr mat-row *matRowDef="let booking; columns: bookingTableColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedTableColumns"></tr>
+            <tr mat-row *matRowDef="let booking; columns: displayedTableColumns"></tr>
         </table>
     </div>
 </form>

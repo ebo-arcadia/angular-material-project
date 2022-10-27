@@ -53,25 +53,25 @@
     ],
     "bookings": [
         {
-            "id": 1,
+            "guestId": 1,
             "guestName": "Michael Jordan",
             "location": "Tokyo",
             "date": "2024-01-01"
         },
         {
-            "id": 2,
+            "guestId": 2,
             "guestName": "Xi Jingping",
             "location": "Beijing",
             "date": "2022-03-08"
         },
         {
-            "id": 3,
+            "guestId": 3,
             "guestName": "Rishi Sunak",
             "location": "London",
             "date": "2030-12-24"
         },
         {
-            "id": 4,
+            "guestId": 4,
             "guestName": "Jamie Dimon",
             "location": "Saudi Arabia",
             "date": "2025-07-07"

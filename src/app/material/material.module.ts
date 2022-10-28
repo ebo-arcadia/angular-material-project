@@ -14,6 +14,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -29,7 +30,8 @@ const MaterialComponents = [
   MatButtonToggleModule,
   MatChipsModule,
   MatDialogModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

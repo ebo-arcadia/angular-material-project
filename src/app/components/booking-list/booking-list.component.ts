@@ -14,6 +14,8 @@ export class BookingListComponent implements OnInit {
 
   bookings: MatTableDataSource<Booking> = new MatTableDataSource<Booking>([]);;
   displayedTableColumns: string[] = ['guestId', 'guestName', 'location', 'date'];
+  bookingData: Booking[] = [];
+  isLoadingBookingListCompleted: Boolean = false
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -25,7 +27,9 @@ export class BookingListComponent implements OnInit {
     this._bookingsService.getBookings().subscribe((response) => { 
       this.bookings = new MatTableDataSource<Booking>(response);
       this.bookings.paginator = this.paginator;
-      this.bookings.sort = this.sort
+      this.bookings.sort = this.sort;
+      this.bookingData = response;
+      this.isLoadingBookingListCompleted = true;
     });
   }
 

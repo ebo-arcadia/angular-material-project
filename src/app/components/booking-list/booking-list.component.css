@@ -13,3 +13,23 @@
 .width-40 { 
     width: 40%;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-weight-bold {
+    font-weight: bold;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}

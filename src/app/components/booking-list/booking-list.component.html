@@ -5,7 +5,10 @@
         <table mat-table [dataSource]="bookings" matSort class="width-100">
 
             <ng-container matColumnDef="loading">
-                <td mat-footer-cell *matFooterCellDef class="text-center text-italic" colspan="6">{{loadingBookingStatus}}</td>
+                <td mat-footer-cell *matFooterCellDef class="text-center text-italic" colspan="6">
+                    <mat-spinner diameter="100" [ngClass]="{ 'hidden': hasError }" class="margin-auto"></mat-spinner>
+                    {{loadingBookingStatus}}
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="guestId">

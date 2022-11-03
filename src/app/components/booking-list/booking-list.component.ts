@@ -19,6 +19,8 @@ export class BookingListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  loadingBookingStatus: string = "Loading...";
+  hasError: boolean = false;
 
   constructor(private readonly _bookingsService: BookingService) { }
 
@@ -30,6 +32,11 @@ export class BookingListComponent implements OnInit {
       this.bookings.sort = this.sort;
       this.bookingData = response;
       this.isLoadingBookingListCompleted = true;
+    },
+    (error) => {
+      console.log(error);
+      this.loadingBookingStatus = "Error fetching booking data";
+      this.hasError = true;
     });
   }
 

@@ -33,3 +33,9 @@
 .hidden {
     display: none;
 }
+
+.table-container {
+    min-height: 250px;
+    height: 250px;
+    overflow: auto;
+}

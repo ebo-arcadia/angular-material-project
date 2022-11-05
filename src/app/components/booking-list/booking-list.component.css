@@ -39,3 +39,7 @@
     height: 250px;
     overflow: auto;
 }
+
+.hand-icon {
+    cursor:zoom-in;
+}

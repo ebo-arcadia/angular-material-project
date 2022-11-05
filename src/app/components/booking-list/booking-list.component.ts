@@ -4,6 +4,7 @@ import { Booking } from 'src/app/model/Booking';
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-booking-list',
@@ -21,8 +22,13 @@ export class BookingListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   loadingBookingStatus: string = "Loading...";
   hasError: boolean = false;
+  formGroup: FormGroup
 
-  constructor(private readonly _bookingsService: BookingService) { }
+  constructor(private readonly _bookingsService: BookingService) { 
+    this.formGroup = new FormGroup({
+      search: new FormControl(null)
+    })
+  }
 
 
   ngOnInit(): void{

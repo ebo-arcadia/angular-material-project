@@ -3,9 +3,9 @@
 <form [formGroup]="formGroup">
     <mat-form-field appearance="fill" class="width-100" floatLabel="never">
         <mat-label>Search</mat-label>
-        <input type="search" matInput formControlName="search">
+        <input type="search" matInput formControlName="search" (keyup)="filterBookings()">
         <mat-icon matPrefix>search</mat-icon>
-        <mat-icon matSuffix class="hand-icon">close</mat-icon>
+        <mat-icon matSuffix class="hand-icon" (click)="clearFilter()">close</mat-icon>
         {{ formGroup.value | json}}
     </mat-form-field>
 

@@ -30,7 +30,6 @@ export class BookingListComponent implements OnInit {
     })
   }
 
-
   ngOnInit(): void{
     this._bookingsService.getBookings().subscribe((response) => { 
       this.bookings = new MatTableDataSource<Booking>(response);
@@ -44,6 +43,17 @@ export class BookingListComponent implements OnInit {
       this.loadingBookingStatus = "Error fetching booking data";
       this.hasError = true;
     });
+  }
+
+  filterBookings(): void {
+    if (this.formGroup.value.search !== null && this.bookingData) {
+      this.bookings.filter = this.formGroup.value.search.trim()
+    }
+  }
+
+  clearFilter(): void {
+    this.formGroup.patchValue({search: ""});
+    this.filterBookings();
   }
 
 }

@@ -5,6 +5,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FormGroup, FormControl } from '@angular/forms';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-booking-list',
@@ -37,6 +38,13 @@ export class BookingListComponent implements OnInit {
       this.bookings.sort = this.sort;
       this.bookingData = response;
       this.isLoadingBookingListCompleted = true;
+      this.bookings.filterPredicate = (bookingObj, filter) => {
+        let newBookingObj = { ...bookingObj };
+        if (filter) { filter.toLowerCase() };
+        if (newBookingObj.guestName) { newBookingObj.guestName = newBookingObj.guestName.toLowerCase() };
+        if (newBookingObj.location) { newBookingObj.location = newBookingObj.location.toLowerCase() };
+        return newBookingObj.guestName.indexOf(filter) != -1 || newBookingObj.location.indexOf(filter) != -1;
+      }
     },
     (error) => {
       console.log(error);

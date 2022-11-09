@@ -1,0 +1,45 @@
+.width-100 {
+    width: 100%;
+}
+
+.width-25 { 
+    width: 25%;
+}
+
+.width-15 { 
+    width: 15%;
+}
+
+.width-40 { 
+    width: 40%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-weight-bold {
+    font-weight: bold;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.table-container {
+    min-height: 250px;
+    height: 250px;
+    overflow: auto;
+}
+
+.hand-icon {
+    cursor: pointer;
+}

@@ -1,0 +1,59 @@
+<h1>Vacational home reservation page</h1>
+
+<form [formGroup]="formGroup">
+    <mat-form-field appearance="fill" class="width-100" floatLabel="never">
+        <mat-label>Search</mat-label>
+        <input type="search" matInput formControlName="search" (keyup)="filterBookings()">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-icon matSuffix class="hand-icon" (click)="clearFilter()">close</mat-icon>
+    </mat-form-field>
+
+    <div class="table-container">
+        <table mat-table [dataSource]="bookings" matSort class="width-100">
+
+            <ng-container matColumnDef="loading">
+                <td mat-footer-cell *matFooterCellDef class="text-center text-italic" colspan="6">
+                    <mat-spinner diameter="100" [ngClass]="{ 'hidden': hasError }" class="margin-auto"></mat-spinner>
+                    {{loadingBookingStatus}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="guestId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Guest ID</th>
+                <td mat-cell *matCellDef="let booking" class="width-15">{{booking.guestId}}</td>
+                <td mat-footer-cell *matFooterCellDef colspan="2" class="wid-25">Total Booking: </td>
+            </ng-container>
+
+            <ng-container matColumnDef="guestName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Guest Name</th>
+                <td mat-cell *matCellDef="let booking">{{booking.guestName}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef>Location</th>
+                <td mat-cell *matCellDef="let booking" class="width-25">{{booking.location}}</td>
+                <td mat-footer-cell *matFooterCellDef colspan="2" class="wid-25">{{ bookingData.length }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Booking Date</th>
+                <td mat-cell *matCellDef="let booking">{{booking.date}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedTableColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let booking; columns: displayedTableColumns"></tr>
+
+            <tr mat-footer-row *matFooterRowDef="['guestId', 'location']; sticky: true" 
+                class="text-italic text-weight-bold"
+                [ngClass]="{hidden: !isLoadingBookingListCompleted}">
+            </tr>
+
+            <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{ hidden: isLoadingBookingListCompleted }"></tr>
+
+        </table>
+    </div>
+
+    <div [ngClass]="{ hidden: !isLoadingBookingListCompleted}">
+        <mat-paginator [pageSize]="3" [pageSizeOptions]="[1, 3, 5]" showFirstLastButtons></mat-paginator>
+    </div>
+</form>

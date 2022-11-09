@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "countries": [
         {
             "id":1,
@@ -59,4 +60,107 @@
             "cityName":"New York City"
         }
     ]
+=======
+  "countries": [
+    {
+      "id": 1,
+      "countryName": "Australia"
+    },
+    {
+      "id": 2,
+      "countryName": "Bermuda"
+    },
+    {
+      "id": 3,
+      "countryName": "Canada"
+    },
+    {
+      "id": 4,
+      "countryName": "Denmark"
+    },
+    {
+      "id": 5,
+      "countryName": "Egypt"
+    },
+    {
+      "id": 6,
+      "countryName": "Frence"
+    },
+    {
+      "id": 7,
+      "countryName": "Argentina"
+    },
+    {
+      "username": "Ebo Arcadia",
+      "email": "ebo.n.arcadia@gmail.com",
+      "password": "password888",
+      "roles": [
+        "developer",
+        "admin",
+        "consumer"
+      ],
+      "id": 8
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "cityName": "Athens"
+    },
+    {
+      "id": 2,
+      "cityName": "Barcelona"
+    },
+    {
+      "id": 3,
+      "cityName": "Cardiff"
+    },
+    {
+      "id": 4,
+      "cityName": "Denvor"
+    },
+    {
+      "id": 5,
+      "cityName": "Eden"
+    }
+  ],
+  "bookings": [
+    {
+      "guestId": 1,
+      "guestName": "Michael Jordan",
+      "location": "Tokyo",
+      "date": "2024-01-01"
+    },
+    {
+      "guestId": 2,
+      "guestName": "Xi Jingping",
+      "location": "Beijing",
+      "date": "2022-03-08"
+    },
+    {
+      "guestId": 3,
+      "guestName": "Rishi Sunak",
+      "location": "London",
+      "date": "2030-12-24"
+    },
+    {
+      "guestId": 4,
+      "guestName": "Jamie Dimon",
+      "location": "Saudi Arabia",
+      "date": "2025-07-07"
+    },
+    {
+      "guestId": 5,
+      "guestName": "Kalshi",
+      "location": "Washington DC",
+      "date": "2022-11-08"
+    },
+    {
+      "guestId": 6,
+      "guestName": "Matt Damon",
+      "location": "Virgin Australia",
+      "date": "2030-12-01"
+    }
+  ]
+>>>>>>> booking-table
 }

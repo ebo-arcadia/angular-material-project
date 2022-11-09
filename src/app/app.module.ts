@@ -10,11 +10,11 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
-import * as moment from 'moment';
 import { SelectAppliancesComponent } from './components/select-appliances/select-appliances.component';
+import { BookingListComponent } from './components/booking-list/booking-list.component';
 
 @NgModule({
-  declarations: [AppComponent, BookingComponent, SelectAppliancesComponent],
+  declarations: [AppComponent, BookingComponent, SelectAppliancesComponent, BookingListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

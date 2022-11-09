@@ -1,66 +1,4 @@
 {
-<<<<<<< HEAD
-    "countries": [
-        {
-            "id":1,
-            "countryName":"Australia"
-        },
-        {
-            "id":2,
-            "countryName":"Bermuda"
-        },
-        {
-            "id":3,
-            "countryName":"Canada"
-        },
-        {
-            "id":4,
-            "countryName":"Denmark"
-        },
-        {
-            "id":5,
-            "countryName":"Egypt"
-        },
-        {
-            "id":6,
-            "countryName":"Frence"
-        },
-        {
-            "id":7,
-            "countryName":"Argentina"
-        },
-        {
-            "id":8,
-            "countryName":"Senegal"
-        }
-    ],
-    "cities": [
-        {
-            "id":1,
-            "cityName":"Athens"
-        },
-        {
-            "id":2,
-            "cityName":"Barcelona"
-        },
-        {
-            "id":3,
-            "cityName":"Cardiff"
-        },
-        {
-            "id":4,
-            "cityName":"Denvor"
-        },
-        {
-            "id":5,
-            "cityName":"Eden"
-        },
-        {
-            "id":5,
-            "cityName":"New York City"
-        }
-    ]
-=======
   "countries": [
     {
       "id": 1,
@@ -162,5 +100,4 @@
       "date": "2030-12-01"
     }
   ]
->>>>>>> booking-table
 }

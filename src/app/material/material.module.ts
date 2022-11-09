@@ -14,12 +14,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from '@angular/material/table';
-<<<<<<< HEAD
-=======
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
->>>>>>> booking-table
 
 const MaterialComponents = [
   MatButtonModule,
@@ -35,14 +32,10 @@ const MaterialComponents = [
   MatButtonToggleModule,
   MatChipsModule,
   MatDialogModule,
-<<<<<<< HEAD
-  MatTableModule
-=======
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
   MatProgressSpinnerModule
->>>>>>> booking-table
 ];
 
 @NgModule({

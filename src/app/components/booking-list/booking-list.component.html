@@ -6,7 +6,6 @@
         <input type="search" matInput formControlName="search" (keyup)="filterBookings()">
         <mat-icon matPrefix>search</mat-icon>
         <mat-icon matSuffix class="hand-icon" (click)="clearFilter()">close</mat-icon>
-        {{ formGroup.value | json}}
     </mat-form-field>
 
     <div class="table-container">

@@ -37,7 +37,7 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatSortModule,
   MatProgressSpinnerModule,
-  MatToolbarModule
+  MatToolbarModule,
 ];
 
 @NgModule({

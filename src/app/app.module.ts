@@ -10,9 +10,10 @@ import { NgModule } from '@angular/core';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { SelectAppliancesComponent } from './components/select-appliances/select-appliances.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
+import { ToolbarHotelHomeComponent } from './components/toolbar-hotel-home/toolbar-hotel-home.component';
 
 @NgModule({
-  declarations: [AppComponent, BookingComponent, SelectAppliancesComponent, BookingListComponent],
+  declarations: [AppComponent, BookingComponent, SelectAppliancesComponent, BookingListComponent, ToolbarHotelHomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,7 +21,7 @@ import { BookingListComponent } from './components/booking-list/booking-list.com
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
